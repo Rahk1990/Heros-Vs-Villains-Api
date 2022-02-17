@@ -69,8 +69,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'heros_villains_project.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
 
 
 
@@ -115,3 +114,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+try:
+    from heros_villains_project.local_setting import *
+except ImportError:
+    pass

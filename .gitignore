@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+
+# heros_villains_project/local_setting.py
+
+
 # interp
 # C:\Users\rahk1\.virtualenvs\SuperVs_Villians-oVEJ_I7W
 
@@ -60,7 +65,7 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
+local_setting.py
 db.sqlite3
 db.sqlite3-journal
 
