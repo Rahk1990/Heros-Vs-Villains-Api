@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# interp
+# C:\Users\rahk1\.virtualenvs\SuperVs_Villians-oVEJ_I7W
+
 # C extensions
 *.so
 
