@@ -32,22 +32,18 @@ def super_types_list(request):
         serializer.save()
         return Response(serializer.data, status.HTTP_201_CREATED)
     
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE'])
 def super_types_detail(request, pk):
    
     super_type = get_object_or_404(Super_types, pk=pk)
     
-    if request.method == 'GET':
             
-            serializer = Super_typesSerializer(super_type)
-            return Response(serializer.data)
-            
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
             serializer = Super_typesSerializer(super_type, data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
 
     elif request.method == 'DELETE':
-            product.delete()
+            serializer.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)

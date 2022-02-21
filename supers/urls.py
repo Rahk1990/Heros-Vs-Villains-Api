@@ -3,8 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.supers),
-    path('villains/', views.get_all_villains),
-    path('heros/', views.get_all_hero),
+    path('', views.supers),  # Gettting and Adding
+    path('<int:pk>/', views.supers_detail),  # Update, delete
 ] 
     
