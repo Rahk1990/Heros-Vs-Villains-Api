@@ -1,3 +1,4 @@
+from random import randint
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -8,51 +9,70 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
+    
+    # supers_detail = Supers.objects.all()
+       ####Method Tester###
+    # if request.method == 'GET':
+    #     super_type = Supers.objects.all()              
+    #     serializer = SupersSerializer(super_type, many=True)
+    #     return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
 def supers(request):
-
-    supers_detail = Supers.objects.all()
-    
     if request.method == 'GET':
-                       
-        serializer = SupersSerializer(supers_detail, many=True)
-        return Response(serializer.data)
+
+
         
         # This will handle three scenarios:
         # http://127.0.0.1:8000/api/?type="hero" (or "villian")
 
-        # type_param = request.query_params.get('type')
-
-        # if type_param == "hero":
-        #     records = Supers.objects.filter(super_type=1)
-
-        # elif type_param == "villain":
-        #     records = Supers.objects.filter(super_type=2)
-
-        # else:
-        #     # If type is not passed get all records
-        #     records = Supers.objects.all()
-        #     serializer = SupersSerializer(records, many=True)
+        type_param = request.query_params.get('type')
         
-        return Response(records, status.HTTP_200_OK)
-            
-        # return Response(records, status.HTTP_200_OK)
+        if type_param == "hero":
+            records = Supers.objects.filter(super_type=1)
+            serializer = SupersSerializer(records, many=True)
+            return Response(serializer.data) 
 
-    elif request.method == 'POST': #Create new hero
-        # records = Supers.objects.get
+        elif type_param == "villain":
+            records = Supers.objects.filter(super_type=2)
+            serializer = SupersSerializer(records, many=True)
+            return Response(serializer.data)
+        else:
+            # If type is not passed get all records
+            super_type = Supers.objects.all()              
+            serializer = SupersSerializer(super_type, many=True)
+            return Response(serializer.data)
+
+    elif request.method == 'POST':
         serializer = SupersSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response (serializer.data, status.HTTP_201_CREATED)
+
+
+
+        # records = Supers.objects.all()
+        # serializer = SupersSerializer(records, many=True)
+        # return Response(serializer.data)
+    # return Response(records, status.HTTP_200_OK)
+            
+        # return Response(records, status.HTTP_200_OK)
+
+    # elif request.method == 'POST': #Create new hero
+    #     # records = Supers.objects.get
+    #     serializer = SupersSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #     return Response(serializer.data, status.HTTP_201_CREATED)
     
-@api_view(['PUT', 'DELETE'])
+@api_view(['GET','PUT', 'DELETE'])
 def supers_detail(request, pk):
-   
     super = get_object_or_404(Supers, pk=pk)
+   
+       
     
     if request.method == 'GET':
-            
+               
         serializer = SupersSerializer(super)
         return Response(serializer.data)
             

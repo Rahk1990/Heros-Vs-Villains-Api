@@ -11,4 +11,4 @@ class Supers(models.Model):
     super_type = models.ForeignKey(Super_types, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.type
+        return self.super_type
